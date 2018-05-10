@@ -107,10 +107,10 @@ namespace DelegatesAndEvents
         /// <param name="value">значение, которое надо вставить</param>
         public void Insert(int index, T value)
         {
-            var oldValue = _list[index];
+            //var oldValue = _list[index];
             _list.Insert(index, value);
 
-            Args = new TrackableListEventArgs<T>(index, oldValue, value, 3);
+            Args = new TrackableListEventArgs<T>(index, default(T), value, 3);
             OnChangeEvent(Args);
         }
 
@@ -122,10 +122,7 @@ namespace DelegatesAndEvents
         {
             var oldValue = _list[index];
             _list.RemoveAt(index);
-            var newValue = default(T);
-            if (index <= _list.Count - 1)
-                newValue = _list[index];
-            Args = new TrackableListEventArgs<T>(index, oldValue, newValue, 4);
+            Args = new TrackableListEventArgs<T>(index, oldValue, default(T), 4);
             OnChangeEvent(Args);
         }
 
